@@ -90,12 +90,44 @@
       justify-content: space-between;
     }
     .nav-logo {
-      font-family: var(--mono);
-      font-size: .85rem;
-      color: var(--cyan);
-      letter-spacing: .08em;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
     }
-    .nav-logo span { color: var(--fg-dim); }
+    .nav-logo-mark {
+      width: 34px; height: 34px;
+      background: var(--cyan);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--display);
+      font-size: .95rem;
+      font-weight: 800;
+      color: var(--black);
+      letter-spacing: -.02em;
+      flex-shrink: 0;
+    }
+    .nav-logo-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1;
+    }
+    .nav-logo-name {
+      font-family: var(--display);
+      font-size: .82rem;
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: .01em;
+    }
+    .nav-logo-role {
+      font-family: var(--mono);
+      font-size: .6rem;
+      letter-spacing: .12em;
+      color: var(--cyan);
+      text-transform: uppercase;
+    }
     .nav-links {
       display: flex;
       gap: 36px;
@@ -266,11 +298,25 @@
       position: relative;
       overflow: hidden;
     }
+    .hero-avatar img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 12px;
+    }
+    .hero-avatar .avatar-fallback {
+      position: relative;
+      z-index: 1;
+    }
     .hero-avatar::after {
       content: '';
       position: absolute;
       inset: 0;
       background: linear-gradient(160deg, rgba(0,212,255,.12), transparent);
+      z-index: 2;
+      border-radius: 12px;
     }
     .badge-row {
       display: flex;
@@ -837,7 +883,13 @@
 <!-- Navigation -->
 <nav id="mainNav">
   <div class="container nav-inner">
-    <div class="nav-logo"><span>~/</span>duncan-maina</div>
+    <a href="#hero" class="nav-logo">
+      <div class="nav-logo-mark">DM</div>
+      <div class="nav-logo-text">
+        <span class="nav-logo-name">Duncan Maina</span>
+        <span class="nav-logo-role">Full Stack · Security</span>
+      </div>
+    </a>
     <ul class="nav-links">
       <li><a href="#skills">Skills</a></li>
       <li><a href="#experience">Experience</a></li>
@@ -892,7 +944,11 @@
         </div>
       </div>
       <div class="hero-card">
-        <div class="hero-avatar">👨‍💻</div>
+        <div class="hero-avatar">
+          <img src="https://i.ibb.co/n8nMKnFX/image.jpg" alt="Duncan Nyaga Maina"
+               onerror="this.style.display='none';document.querySelector('.avatar-fallback').style.display='block'"/>
+          <span class="avatar-fallback" style="display:none">👨‍💻</span>
+        </div>
         <div class="badge-row">
           <span class="badge badge-cyan">MERN Stack</span>
           <span class="badge badge-green">Next.js</span>
@@ -995,6 +1051,11 @@
         <div class="skill-group" style="margin-top:32px">
           <div class="skill-group-title">DevOps & Security</div>
           <div class="skill-item">
+            <span class="skill-name">Python</span>
+            <div class="skill-bar-track"><div class="skill-bar-fill" style="width:85%;background:var(--green)" data-pct=".85"></div></div>
+            <span class="skill-pct">85%</span>
+          </div>
+          <div class="skill-item">
             <span class="skill-name">Git / GitHub / Azure DevOps</span>
             <div class="skill-bar-track"><div class="skill-bar-fill" style="width:87%;background:var(--amber)" data-pct=".87"></div></div>
             <span class="skill-pct">87%</span>
@@ -1014,7 +1075,7 @@
     </div>
 
     <div class="tech-cloud">
-      <span class="tech-pill">MongoDB</span><span class="tech-pill">Express.js</span>
+      <span class="tech-pill">Python</span><span class="tech-pill">MongoDB</span><span class="tech-pill">Express.js</span>
       <span class="tech-pill">React.js</span><span class="tech-pill">Node.js</span>
       <span class="tech-pill">Next.js</span><span class="tech-pill">C# / .NET</span>
       <span class="tech-pill">PostgreSQL</span><span class="tech-pill">SQL Server</span>
@@ -1053,7 +1114,7 @@
             <li>Managed and optimised databases across <strong>PostgreSQL, MongoDB, and SQL Server</strong>.</li>
             <li>Worked in an Agile environment using <strong>Git, GitHub, and Azure DevOps</strong> for version control, sprint planning, and task management.</li>
             <li>Developed additional tools: a data visualisation chart app and a blog platform — both using MERN stack.</li>
-            <li>Contributed to the official company website using <strong>WordPress</strong>.</li>
+            <li>Built and deployed the official <strong>Fintech Group Kenya website</strong> using WordPress — the live production site still used by the company today. <a href="https://fintech-group.com" target="_blank" style="color:var(--cyan);">fintech-group.com ↗</a></li>
           </ul>
           <div class="exp-achievement">
             🏆 Successfully developed and deployed multiple full-stack applications, contributing to improved development workflows and scalable system architecture.
@@ -1135,11 +1196,11 @@
         <div class="proj-header">
           <div class="proj-accent" style="background:var(--green);"></div>
           <div class="proj-title">EduBridge LMS</div>
-          <p class="proj-desc">Learning Management System bridging education and employment. Skill-to-Job Matching Engine, course management, student dashboards, and AI-powered career modules.</p>
+          <p class="proj-desc">Learning Management System bridging education and employment. Built the <strong style="color:var(--green)">Skill-to-Job Matching Engine in Python</strong>, course management, student dashboards, and AI-powered career development modules.</p>
         </div>
         <div class="proj-stack">
-          <span class="stack-tag">MERN</span><span class="stack-tag">PostgreSQL</span>
-          <span class="stack-tag">Node.js</span><span class="stack-tag">React</span>
+          <span class="stack-tag">MERN</span><span class="stack-tag">Python</span>
+          <span class="stack-tag">PostgreSQL</span><span class="stack-tag">React</span>
         </div>
         <div class="proj-footer">
           <a href="https://github.com/Duncanmaina58" target="_blank" class="proj-link">GitHub ↗</a>
@@ -1211,7 +1272,24 @@
         </div>
       </div>
 
-      <!-- Blog & Chart Apps -->
+      <!-- Fintech Group Website -->
+      <div class="proj-card">
+        <div class="proj-header">
+          <div class="proj-accent" style="background:var(--cyan);"></div>
+          <div style="display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap;">
+            <span class="badge badge-green" style="font-size:.6rem;padding:3px 8px;">🟢 Live in Production</span>
+          </div>
+          <div class="proj-title">Fintech Group Kenya Website</div>
+          <p class="proj-desc">Designed and built the official Fintech Group Kenya website during my internship. The site is live and actively used by the company today — handling public-facing pages, branding, navigation, and mobile responsiveness.</p>
+        </div>
+        <div class="proj-stack">
+          <span class="stack-tag">WordPress</span><span class="stack-tag">HTML/CSS</span>
+          <span class="stack-tag">Responsive</span><span class="stack-tag">Production</span>
+        </div>
+        <div class="proj-footer">
+          <a href="https://fintech-group.com" target="_blank" class="proj-link" style="color:var(--green);">Live Site ↗</a>
+        </div>
+      </div>
       <div class="proj-card">
         <div class="proj-header">
           <div class="proj-accent" style="background:var(--amber);"></div>
